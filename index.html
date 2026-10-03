@@ -147,25 +147,12 @@
     }
 
     /* Detalles del evento */
-    .event-date {
-      font-size: 19px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    .event-time {
-      font-size: 15px;
-      color: #e5c158;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
     .event-location {
       font-size: 16px;
       font-weight: 500;
       color: #d0d7de;
-      margin-bottom: 20px;
+      margin-top: 15px;
+      margin-bottom: 15px;
     }
 
     /* Tarjeta de Precios Moderna */
@@ -239,6 +226,7 @@
       box-shadow: 0 6px 20px rgba(193, 153, 53, 0.3);
       transition: all 0.3s ease;
       letter-spacing: 0.5px;
+      margin-bottom: 25px;
     }
 
     .btn-maps:hover {
@@ -248,14 +236,6 @@
 
     .btn-maps:active {
       transform: scale(0.97);
-    }
-
-    .btn-sub {
-      font-size: 11px;
-      color: #94a3b8;
-      margin-top: 6px;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
     }
 
     /* Bloques Informativos Modernos */
@@ -270,52 +250,92 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
-    .info-box-title {
-      color: #e5c158;
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      font-family: 'Cinzel', serif;
-      letter-spacing: 1px;
-    }
-
-    .info-box-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #cbd5e1;
-      margin: 0;
-    }
-
-    /* Cronograma Estilizado */
+    /* Cronograma Vivo y Llamativo */
     .timeline {
       text-align: left;
       margin: 5px 0;
-      padding-left: 5px;
+      padding-left: 2px;
     }
 
     .timeline-item {
       display: flex;
-      align-items: center;
-      gap: 15px;
+      flex-direction: column;
+      gap: 4px;
       margin-bottom: 14px;
       position: relative;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(229, 193, 88, 0.15);
+      transition: all 0.3s ease;
     }
 
     .timeline-item:last-child {
       margin-bottom: 0;
     }
 
+    .timeline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .timeline-time {
-      color: #e5c158;
+      color: #f3d57b;
       font-weight: 700;
-      font-size: 13px;
-      min-width: 65px;
+      font-size: 14px;
       font-family: 'Cinzel', serif;
     }
 
     .timeline-desc {
       font-size: 13px;
       color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    .timeline-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .timeline-item.past {
+      opacity: 0.45;
+    }
+    .timeline-item.past .timeline-badge {
+      background: rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+    }
+
+    .timeline-item.current {
+      background: rgba(229, 193, 88, 0.15);
+      border: 1px solid rgba(229, 193, 88, 0.8);
+      box-shadow: 0 0 20px rgba(229, 193, 88, 0.3);
+      transform: scale(1.02);
+    }
+    .timeline-item.current .timeline-desc {
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .timeline-item.current .timeline-badge {
+      background: #34d399;
+      color: #060e18;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
+      animation: pulseBadge 1.5s infinite;
+    }
+
+    @keyframes pulseBadge {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .timeline-item.upcoming .timeline-badge {
+      background: rgba(229, 193, 88, 0.15);
+      color: #e5c158;
     }
 
     /* Frase Final */
@@ -385,86 +405,127 @@
     <img src="https://i.postimg.cc/CxRSBszL/Whats-App-Image-2026-10-01-at-22-45-58.jpg" alt="Promoción 224" class="group-photo">
   </div>
 
-  <!-- Subtítulo Contador -->
-  <div class="divider-container">
-    <div class="line"></div>
-    <span class="sub-title">FALTAN</span>
-    <div class="line"></div>
+  <!-- Contenedor Dinámico: Contador (Antes) o Mensaje de Fiesta (Durante) -->
+  <div id="countdown-section">
+    <div class="divider-container">
+      <div class="line"></div>
+      <span class="sub-title">FALTAN</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="countdown-grid">
+      <div class="card"><span class="num" id="days">00</span><span class="label">DÍAS</span></div>
+      <div class="card"><span class="num" id="hours">00</span><span class="label">HRS</span></div>
+      <div class="card"><span class="num" id="minutes">00</span><span class="label">MIN</span></div>
+      <div class="card"><span class="num" id="seconds">00</span><span class="label">SEG</span></div>
+    </div>
+
+    <div class="star">✦ ✦ ✦</div>
   </div>
 
-  <!-- Contador con diseño Glassmorphism -->
-  <div class="countdown-grid">
-    <div class="card"><span class="num" id="days">00</span><span class="label">DÍAS</span></div>
-    <div class="card"><span class="num" id="hours">00</span><span class="label">HRS</span></div>
-    <div class="card"><span class="num" id="minutes">00</span><span class="label">MIN</span></div>
-    <div class="card"><span class="num" id="seconds">00</span><span class="label">SEG</span></div>
-  </div>
+  <!-- Secciones que se ocultan cuando arranca la fiesta (Precios, Dress Code, Menú) -->
+  <div id="pre-event-sections">
+    <div class="event-date" style="font-size: 19px; font-weight: 700; margin-bottom: 6px;">14 de Noviembre de 2026</div>
+    <div class="event-time" style="font-size: 15px; color: #e5c158; font-weight: 600; margin-bottom: 25px;">⏰ 20:00 hs</div>
 
-  <div class="star">✦ ✦ ✦</div>
+    <!-- Tarjeta de Precios -->
+    <div class="ticket-price-box">
+      <div class="ticket-title">Valor de la Tarjeta</div>
+      <ul class="ticket-list">
+        <li class="ticket-item">
+          <span class="label">Adultos</span>
+          <span class="price">$157.000</span>
+        </li>
+        <li class="ticket-item">
+          <span class="label">Menores de 12 años</span>
+          <span class="price">$78.500</span>
+        </li>
+        <li class="ticket-item">
+          <span class="label">Niños (sin silla)</span>
+          <span class="free">NO PAGAN</span>
+        </li>
+      </ul>
+    </div>
 
-  <!-- Detalles del Evento -->
-  <div class="event-date">14 de Noviembre de 2026</div>
-  <div class="event-time">⏰ 20:00 hs</div>
-  <div class="event-location">Quinta Colegio de Abogados</div>
-
-  <!-- Tarjeta de Precios -->
-  <div class="ticket-price-box">
-    <div class="ticket-title">Valor de la Tarjeta</div>
-    <ul class="ticket-list">
-      <li class="ticket-item">
-        <span class="label">Adultos</span>
-        <span class="price">$157.000</span>
-      </li>
-      <li class="ticket-item">
-        <span class="label">Menores de 12 años</span>
-        <span class="price">$78.500</span>
-      </li>
-      <li class="ticket-item">
-        <span class="label">Niños (sin silla)</span>
-        <span class="free">NO PAGAN</span>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Botón Google Maps -->
-  <a href="https://maps.app.goo.gl/n3C1s9eJcV7gqZJSA" target="_blank" rel="noopener noreferrer" class="btn-maps">📍 Cómo llegar al lugar</a>
-  <div class="btn-sub">Abre Google Maps</div>
-
-  <!-- Código de Vestimenta -->
-  <div class="divider-container">
-    <div class="line"></div>
-    <span class="sub-title">DRESS CODE</span>
-    <div class="line"></div>
-  </div>
-  <div class="info-box">
-    <div class="info-box-title">👔 Elegante / Formal</div>
-    <p class="info-box-text">Te esperamos con tu mejor outfit formal para celebrar esta gran noche juntos.</p>
+    <!-- Código de Vestimenta -->
+    <div class="divider-container">
+      <div class="line"></div>
+      <span class="sub-title">DRESS CODE</span>
+      <div class="line"></div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-title">👔 Elegante / Formal</div>
+      <p class="info-box-text">Te esperamos con tu mejor outfit formal para celebrar esta gran noche juntos.</p>
+    </div>
   </div>
 
   <!-- Cronograma del Evento -->
   <div class="divider-container">
     <div class="line"></div>
-    <span class="sub-title">CRONOGRAMA</span>
+    <span class="sub-title" id="cronograma-subtitle">CRONOGRAMA</span>
     <div class="line"></div>
   </div>
   <div class="info-box">
     <div class="timeline">
-      <div class="timeline-item"><span class="timeline-time">20:00 hs</span><span class="timeline-desc">Recepción e ingreso de invitados</span></div>
-      <div class="timeline-item"><span class="timeline-time">21:00 hs</span><span class="timeline-desc">Ingreso de egresados y brindis</span></div>
-      <div class="timeline-item"><span class="timeline-time">22:00 hs</span><span class="timeline-desc">Cena de egreso</span></div>
-      <div class="timeline-item"><span class="timeline-time">00:00 hs</span><span class="timeline-desc">Apertura de pista y fiesta 🎉</span></div>
+      
+      <div class="timeline-item" id="t-2000">
+        <div class="timeline-row">
+          <span class="timeline-time">20:00 hs</span>
+          <span class="timeline-badge">Estado</span>
+        </div>
+        <div class="timeline-row" style="margin-top: 4px;">
+          <span class="timeline-desc">📥 Recepción e ingreso de invitados</span>
+        </div>
+      </div>
+
+      <div class="timeline-item" id="t-2100">
+        <div class="timeline-row">
+          <span class="timeline-time">21:00 hs</span>
+          <span class="timeline-badge">Estado</span>
+        </div>
+        <div class="timeline-row" style="margin-top: 4px;">
+          <span class="timeline-desc">🥂 Ingreso de egresados y brindis</span>
+        </div>
+      </div>
+
+      <div class="timeline-item" id="t-2200">
+        <div class="timeline-row">
+          <span class="timeline-time">22:00 hs</span>
+          <span class="timeline-badge">Estado</span>
+        </div>
+        <div class="timeline-row" style="margin-top: 4px;">
+          <span class="timeline-desc">🍽️ Cena de egreso</span>
+        </div>
+      </div>
+
+      <div class="timeline-item" id="t-0000">
+        <div class="timeline-row">
+          <span class="timeline-time">00:00 hs</span>
+          <span class="timeline-badge">Estado</span>
+        </div>
+        <div class="timeline-row" style="margin-top: 4px;">
+          <span class="timeline-desc">🎉 Apertura de pista y fiesta</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Menú Especial y Restricciones -->
-  <div class="divider-container">
-    <div class="line"></div>
-    <span class="sub-title">MENÚ ESPECIAL</span>
-    <div class="line"></div>
-  </div>
-  <div class="info-box">
-    <div class="info-box-title">🥗 Restricciones Alimentarias</div>
-    <p class="info-box-text">Si requieres un menú especial (Celíaco, Vegetariano, Vegano u otra restricción), por favor tenlo en cuenta para el evento.</p>
+  <!-- Ubicación y Botón Google Maps -->
+  <div class="event-location">Quinta Colegio de Abogados</div>
+  <a href="https://maps.app.goo.gl/n3C1s9eJcV7gqZJSA" target="_blank" rel="noopener noreferrer" class="btn-maps">📍 Cómo llegar al lugar</a>
+
+  <!-- Menú Especial (Se oculta cuando arranca la fiesta) -->
+  <div id="pre-event-menu">
+    <div class="divider-container">
+      <div class="line"></div>
+      <span class="sub-title">MENÚ ESPECIAL</span>
+      <div class="line"></div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-title">🥗 Restricciones Alimentarias</div>
+      <p class="info-box-text">Si requieres un menú especial (Celíaco, Vegetariano, Vegano u otra restricción), por favor tenlo en cuenta para el evento.</p>
+    </div>
   </div>
 
   <!-- Frase Final -->
@@ -477,40 +538,117 @@
   </div>
 </div>
 
-<script>
-  // Configuración del contador fijando zona horaria (-03:00 Argentina)
-  const targetDate = new Date("2026-11-14T20:00:00-03:00").getTime();
+<!-- Librería para el efecto de confeti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  function updateCountdown() {
+<script>
+  // Configuración de fechas (14 de Noviembre de 2026 a las 20:00 hs)
+  const targetDate = new Date("2026-11-14T20:00:00-03:00").getTime();
+  const endEventDate = new Date("2026-11-15T06:00:00-03:00").getTime();
+
+  let confettiLaunched = false;
+
+  function updateEventState() {
     const now = new Date().getTime();
     const distance = targetDate - now;
+    
+    const countdownSection = document.getElementById('countdown-section');
+    const preEventSections = document.getElementById('pre-event-sections');
+    const preEventMenu = document.getElementById('pre-event-menu');
+    const cronogramaSubtitle = document.getElementById('cronograma-subtitle');
 
-    if (distance < 0) {
-      const grid = document.querySelector('.countdown-grid');
-      if (grid) {
-        grid.innerHTML = "<h3 style='grid-column: 1 / -1; color: #e5c158; margin: 10px 0; font-family: Cinzel, serif;'>¡Llegó el gran día! 🎉</h3>";
+    // 1. DESPUÉS DE LA FIESTA
+    if (now > endEventDate) {
+      if (countdownSection) {
+        countdownSection.innerHTML = "<h3 style='color: #e5c158; margin: 10px 0; font-family: Cinzel, serif; font-size: 16px;'>¡Gracias por vivir esta noche inolvidable! 💛</h3>";
       }
+      if (preEventSections) preEventSections.style.display = 'none';
+      if (preEventMenu) preEventMenu.style.display = 'none';
       return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // 2. DURANTE LA FIESTA
+    if (distance <= 0 && now <= endEventDate) {
+      if (countdownSection) {
+        countdownSection.innerHTML = "<h3 style='color: #e5c158; margin: 15px 0; font-family: Cinzel, serif; font-size: 18px;'>¡La fiesta está en marcha ahora mismo! 🥂✨</h3>";
+      }
+      
+      // Ocultar precios, dress code y menú
+      if (preEventSections) preEventSections.style.display = 'none';
+      if (preEventMenu) preEventMenu.style.display = 'none';
+      
+      // Actualizar título de cronograma
+      if (cronogramaSubtitle) cronogramaSubtitle.innerText = "CRONOGRAMA EN VIVO";
 
-    const dElem = document.getElementById("days");
-    const hElem = document.getElementById("hours");
-    const mElem = document.getElementById("minutes");
-    const sElem = document.getElementById("seconds");
+      // Lanzar confeti una sola vez
+      if (!confettiLaunched) {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#e5c158', '#ffffff', '#10243e']
+        });
+        confettiLaunched = true;
+      }
+    } else {
+      // 3. ANTES DEL EVENTO (Contador normal)
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    if (dElem) dElem.innerText = String(days).padStart(2, '0');
-    if (hElem) hElem.innerText = String(hours).padStart(2, '0');
-    if (mElem) mElem.innerText = String(minutes).padStart(2, '0');
-    if (sElem) sElem.innerText = String(seconds).padStart(2, '0');
+      const dElem = document.getElementById("days");
+      const hElem = document.getElementById("hours");
+      const mElem = document.getElementById("minutes");
+      const sElem = document.getElementById("seconds");
+
+      if (dElem) dElem.innerText = String(days).padStart(2, '0');
+      if (hElem) hElem.innerText = String(hours).padStart(2, '0');
+      if (mElem) mElem.innerText = String(minutes).padStart(2, '0');
+      if (sElem) sElem.innerText = String(seconds).padStart(2, '0');
+    }
+
+    // 4. CRONOGRAMA EN TIEMPO REAL (Activo el día del evento: 14 de Nov de 2026)
+    const currentDateObj = new Date();
+    const isEventDay = currentDateObj.getFullYear() === 2026 && 
+                       currentDateObj.getMonth() === 10 && 
+                       currentDateObj.getDate() === 14;
+
+    if (isEventDay) {
+      const currentHour = currentDateObj.getHours();
+      const currentMinute = currentDateObj.getMinutes();
+      const timeInMinutes = currentHour * 60 + currentMinute;
+
+      const items = [
+        { id: 't-2000', start: 1200, end: 1260 }, // 20:00 - 21:00
+        { id: 't-2100', start: 1260, end: 1320 }, // 21:00 - 22:00
+        { id: 't-2200', start: 1320, end: 1440 }, // 22:00 - 00:00
+        { id: 't-0000', start: 1440, end: 1800 }  // 00:00 en adelante
+      ];
+
+      items.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const badge = el.querySelector('.timeline-badge');
+          el.classList.remove('current', 'past', 'upcoming');
+
+          if (timeInMinutes >= item.end) {
+            el.classList.add('past');
+            if (badge) badge.innerText = "Finalizado ✓";
+          } else if (timeInMinutes >= item.start && timeInMinutes < item.end) {
+            el.classList.add('current');
+            if (badge) badge.innerText = "En curso 🟢";
+          } else {
+            el.classList.add('upcoming');
+            if (badge) badge.innerText = "Próximamente ⏳";
+          }
+        }
+      });
+    }
   }
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+  setInterval(updateEventState, 1000);
+  updateEventState();
 </script>
 
 </body>
