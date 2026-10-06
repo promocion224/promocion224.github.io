@@ -18,14 +18,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <!-- Librería de Confeti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+  <style>
+    * { box-sizing: border-box; }
     body {
       background-color: #060e18;
-      background-image: radial-gradient(circle at 50% 0%, #10243e 0%, #060e18 75%);
+      background-image: radial-gradient(circle at 50% 0%, #132a4a 0%, #060e18 80%);
       color: #ffffff;
       font-family: 'Montserrat', sans-serif;
       margin: 0;
@@ -35,20 +35,16 @@
       line-height: 1.5;
       min-height: 100vh;
     }
-
     .container {
       max-width: 420px;
       width: 100%;
       text-align: center;
       animation: fadeIn 1s ease-out;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Encabezados y separadores */
     .header-title {
       font-family: 'Cinzel', serif;
       color: #f3d57b;
@@ -56,9 +52,8 @@
       letter-spacing: 3px;
       margin: 0 0 5px 0;
       font-weight: 700;
-      text-shadow: 0 2px 15px rgba(229, 193, 88, 0.2);
+      text-shadow: 0 2px 15px rgba(229, 193, 88, 0.3);
     }
-
     .divider-container {
       display: flex;
       align-items: center;
@@ -66,13 +61,11 @@
       gap: 12px;
       margin: 25px 0 15px 0;
     }
-
     .line {
       height: 1px;
       background: linear-gradient(90deg, transparent, #e5c158, transparent);
       flex-grow: 1;
     }
-
     .sub-title {
       font-family: 'Cinzel', serif;
       color: #e5c158;
@@ -80,32 +73,26 @@
       letter-spacing: 3px;
       font-weight: 600;
     }
-
-    /* Imagen con marco moderno */
     .photo-wrapper {
       position: relative;
       padding: 6px;
-      background: linear-gradient(135deg, rgba(229, 193, 88, 0.4), rgba(255, 255, 255, 0.05));
+      background: linear-gradient(135deg, rgba(229, 193, 88, 0.5), rgba(255, 255, 255, 0.05));
       border-radius: 14px;
       margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(229, 193, 88, 0.15);
     }
-
     .group-photo {
       width: 100%;
       border-radius: 10px;
       display: block;
       object-fit: cover;
     }
-
-    /* Contador Estilo Moderno (Glassmorphism) */
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin: 20px 0;
     }
-
     .card {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(10px);
@@ -114,14 +101,7 @@
       border-radius: 14px;
       padding: 12px 5px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
     }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(229, 193, 88, 0.6);
-    }
-
     .card .num {
       font-size: 24px;
       font-weight: 700;
@@ -130,7 +110,6 @@
       color: #ffffff;
       font-family: 'Cinzel', serif;
     }
-
     .card .label {
       font-size: 9px;
       color: #e5c158;
@@ -138,37 +117,21 @@
       font-weight: 600;
       letter-spacing: 1.5px;
     }
-
     .star {
       color: #e5c158;
       font-size: 16px;
       margin: 20px 0;
       opacity: 0.8;
     }
-
-    /* Detalles del evento */
-    .event-date {
-      font-size: 19px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    .event-time {
-      font-size: 15px;
-      color: #e5c158;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
+    .event-date { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+    .event-time { font-size: 15px; color: #e5c158; font-weight: 600; margin-bottom: 8px; }
     .event-location {
       font-size: 16px;
-      font-weight: 500;
-      color: #d0d7de;
-      margin-bottom: 20px;
+      font-weight: 600;
+      color: #f3d57b;
+      margin-bottom: 15px;
+      font-family: 'Cinzel', serif;
     }
-
-    /* Tarjeta de Precios Moderna */
     .ticket-price-box {
       background: rgba(18, 33, 56, 0.6);
       backdrop-filter: blur(10px);
@@ -177,9 +140,7 @@
       padding: 18px;
       margin: 0 auto 25px auto;
       text-align: left;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     }
-
     .ticket-title {
       font-size: 13px;
       font-weight: 700;
@@ -190,14 +151,7 @@
       letter-spacing: 2px;
       font-family: 'Cinzel', serif;
     }
-
-    .ticket-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 14px;
-    }
-
+    .ticket-list { list-style: none; padding: 0; margin: 0; font-size: 14px; }
     .ticket-item {
       display: flex;
       justify-content: space-between;
@@ -205,28 +159,10 @@
       padding: 8px 0;
       border-bottom: 1px solid rgba(229, 193, 88, 0.1);
     }
-
-    .ticket-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .ticket-item .label {
-      color: #e2e8f0;
-      font-weight: 400;
-    }
-
-    .ticket-item .price {
-      color: #f3d57b;
-      font-weight: 700;
-    }
-
-    .ticket-item .free {
-      color: #34d399;
-      font-weight: 700;
-    }
-
-    /* Botón Maps Moderno */
+    .ticket-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .ticket-item .label { color: #e2e8f0; font-weight: 400; }
+    .ticket-item .price { color: #f3d57b; font-weight: 700; }
+    .ticket-item .free { color: #34d399; font-weight: 700; }
     .btn-maps {
       background: linear-gradient(135deg, #f3d57b 0%, #c19935 100%);
       color: #060e18;
@@ -236,29 +172,10 @@
       border-radius: 30px;
       display: block;
       font-size: 15px;
-      box-shadow: 0 6px 20px rgba(193, 153, 53, 0.3);
-      transition: all 0.3s ease;
-      letter-spacing: 0.5px;
+      box-shadow: 0 6px 20px rgba(193, 153, 53, 0.35);
+      margin-bottom: 6px;
     }
-
-    .btn-maps:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(193, 153, 53, 0.5);
-    }
-
-    .btn-maps:active {
-      transform: scale(0.97);
-    }
-
-    .btn-sub {
-      font-size: 11px;
-      color: #94a3b8;
-      margin-top: 6px;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Bloques Informativos Modernos */
+    .btn-sub { font-size: 11px; color: #94a3b8; margin-bottom: 25px; }
     .info-box {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(10px);
@@ -267,112 +184,157 @@
       padding: 20px;
       margin-bottom: 20px;
       text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
-
     .info-box-title {
       color: #e5c158;
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 10px;
       font-family: 'Cinzel', serif;
-      letter-spacing: 1px;
     }
-
-    .info-box-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #cbd5e1;
-      margin: 0;
-    }
-
-    /* Cronograma Estilizado */
-    .timeline {
-      text-align: left;
-      margin: 5px 0;
-      padding-left: 5px;
-    }
-
-    .timeline-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 14px;
+    .info-box-text { font-size: 13px; line-height: 1.6; color: #cbd5e1; margin: 0; }
+    .timeline { text-align: left; margin: 5px 0; padding-left: 5px; }
+    .timeline-item-static { display: flex; align-items: center; gap: 15px; margin-bottom: 14px; }
+    .timeline-item-static:last-child { margin-bottom: 0; }
+    .timeline-time-static { color: #e5c158; font-weight: 700; font-size: 13px; min-width: 65px; font-family: 'Cinzel', serif; }
+    .timeline-desc-static { font-size: 13px; color: #e2e8f0; }
+    .live-party-banner {
+      background: linear-gradient(135deg, rgba(229, 193, 88, 0.15), rgba(18, 33, 56, 0.8));
+      border: 2px solid #e5c158;
+      border-radius: 16px;
+      padding: 18px 15px;
+      margin: 20px 0;
+      box-shadow: 0 0 25px rgba(229, 193, 88, 0.3);
       position: relative;
+      overflow: hidden;
     }
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .timeline-time {
-      color: #e5c158;
-      font-weight: 700;
-      font-size: 13px;
-      min-width: 65px;
+    .live-party-title {
       font-family: 'Cinzel', serif;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
-
-    .timeline-desc {
-      font-size: 13px;
-      color: #e2e8f0;
-    }
-
-    /* Frase Final */
-    .footer-quote {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: #e5c158;
-      font-size: 18px;
-      margin-top: 35px;
-      border-top: 1px solid rgba(229, 193, 88, 0.3);
-      padding-top: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Firma del Creador */
-    .credits {
-      font-size: 11px;
-      color: #94a3b8;
-      margin-top: 25px;
-      letter-spacing: 1px;
+    .live-party-subtitle {
+      font-size: 12px;
+      color: #34d399;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 6px;
     }
-
-    .credits-author {
-      color: #e5c158;
-      font-weight: 600;
-    }
-
-    .credits-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #34d399;
       border-radius: 50%;
-      background: rgba(229, 193, 88, 0.1);
-      color: #e5c158;
-      text-decoration: none;
-      font-size: 12px;
-      border: 1px solid rgba(229, 193, 88, 0.3);
-      transition: all 0.3s ease;
+      box-shadow: 0 0 8px #34d399;
     }
-
-    .credits-icon:hover {
-      background: rgba(229, 193, 88, 0.25);
-      transform: scale(1.1);
+    .timeline-box {
+      background: rgba(18, 33, 56, 0.55);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(229, 193, 88, 0.3);
+      border-radius: 20px;
+      padding: 24px 20px;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    .timeline-live { position: relative; padding-left: 24px; }
+    .timeline-live::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, #e5c158, rgba(229, 193, 88, 0.2));
+    }
+    .timeline-item-live {
+      position: relative;
+      margin-bottom: 22px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(229, 193, 88, 0.1);
+    }
+    .timeline-item-live:last-child { margin-bottom: 0; }
+    .timeline-item-live::before {
+      content: '';
+      position: absolute;
+      left: -21px;
+      top: 18px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #475569;
+      border: 2px solid #060e18;
+    }
+    .timeline-content { display: flex; flex-direction: column; gap: 4px; }
+    .timeline-header-row { display: flex; justify-content: space-between; align-items: center; }
+    .timeline-time-live { color: #f3d57b; font-weight: 700; font-size: 13px; font-family: 'Cinzel', serif; }
+    .timeline-desc-live { font-size: 13px; color: #cbd5e1; }
+    .status-badge { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; }
+    .status-pending { color: #94a3b8; background: rgba(148, 163, 184, 0.08); }
+    .status-active { color: #34d399; background: rgba(52, 211, 153, 0.12); }
+    .status-finished { color: #64748b; background: rgba(100, 116, 139, 0.08); }
+    .timeline-item-live.active-event { background: rgba(229, 193, 88, 0.07); border-color: rgba(229, 193, 88, 0.45); }
+    .timeline-item-live.active-event::before { background: #f3d57b; }
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(6, 14, 24, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; padding: 20px;
+      animation: fadeInModal 0.6s ease-out;
+    }
+    .modal-content-box {
+      background: linear-gradient(135deg, rgba(19, 42, 74, 0.95), rgba(6, 14, 24, 0.95));
+      border: 2px solid #e5c158; border-radius: 24px; padding: 30px 24px;
+      max-width: 360px; width: 100%; text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(229, 193, 88, 0.3);
+    }
+    .modal-title {
+      font-family: 'Cinzel', serif; color: #f3d57b; font-size: 19px;
+      font-weight: 700; letter-spacing: 1.5px; margin-bottom: 15px;
+    }
+    .modal-text {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 15px; color: #e2e8f0; line-height: 1.6; margin-bottom: 20px;
+    }
+    .modal-close-btn {
+      background: linear-gradient(135deg, #f3d57b 0%, #c19935 100%);
+      color: #060e18; border: none; font-weight: 700; padding: 10px 24px;
+      border-radius: 20px; font-size: 13px; cursor: pointer;
+    }
+    @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+    .footer-quote {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      color: #e5c158; font-size: 18px; margin-top: 35px;
+      border-top: 1px solid rgba(229, 193, 88, 0.3); padding-top: 20px;
+    }
+    .credits {
+      font-size: 11px; color: #94a3b8; margin-top: 25px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .credits-author { color: #e5c158; font-weight: 600; }
+    .credits-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(229, 193, 88, 0.1); color: #e5c158;
+      text-decoration: none; font-size: 12px; border: 1px solid rgba(229, 193, 88, 0.3);
     }
   </style>
 </head>
 <body>
 
+<div id="modal-closing-container"></div>
+
 <div class="container">
-  <!-- Título -->
   <h1 class="header-title">NOCHE DE EGRESO</h1>
   <div class="divider-container">
     <div class="line"></div>
@@ -380,97 +342,79 @@
     <div class="line"></div>
   </div>
 
-  <!-- Foto Grupal con marco moderno -->
   <div class="photo-wrapper">
     <img src="https://i.postimg.cc/CxRSBszL/Whats-App-Image-2026-10-01-at-22-45-58.jpg" alt="Promoción 224" class="group-photo">
   </div>
 
-  <!-- Subtítulo Contador -->
-  <div class="divider-container">
-    <div class="line"></div>
-    <span class="sub-title">FALTAN</span>
-    <div class="line"></div>
-  </div>
+  <div id="main-content-section">
+    <div class="divider-container">
+      <div class="line"></div>
+      <span class="sub-title">FALTAN</span>
+      <div class="line"></div>
+    </div>
 
-  <!-- Contador con diseño Glassmorphism -->
-  <div class="countdown-grid">
-    <div class="card"><span class="num" id="days">00</span><span class="label">DÍAS</span></div>
-    <div class="card"><span class="num" id="hours">00</span><span class="label">HRS</span></div>
-    <div class="card"><span class="num" id="minutes">00</span><span class="label">MIN</span></div>
-    <div class="card"><span class="num" id="seconds">00</span><span class="label">SEG</span></div>
-  </div>
+    <div class="countdown-grid">
+      <div class="card"><span class="num" id="days">00</span><span class="label">DÍAS</span></div>
+      <div class="card"><span class="num" id="hours">00</span><span class="label">HRS</span></div>
+      <div class="card"><span class="num" id="minutes">00</span><span class="label">MIN</span></div>
+      <div class="card"><span class="num" id="seconds">00</span><span class="label">SEG</span></div>
+    </div>
 
-  <div class="star">✦ ✦ ✦</div>
+    <div class="star">✦ ✦ ✦</div>
 
-  <!-- Detalles del Evento -->
-  <div class="event-date">14 de Noviembre de 2026</div>
-  <div class="event-time">⏰ 20:00 hs</div>
-  <div class="event-location">Quinta Colegio de Abogados</div>
+    <div class="event-date">14 de Noviembre de 2026</div>
+    <div class="event-time">⏰ 20:00 hs</div>
+    <div class="event-location">Quinta Colegio de Abogados</div>
 
-  <!-- Tarjeta de Precios -->
-  <div class="ticket-price-box">
-    <div class="ticket-title">Valor de la Tarjeta</div>
-    <ul class="ticket-list">
-      <li class="ticket-item">
-        <span class="label">Adultos</span>
-        <span class="price">$157.000</span>
-      </li>
-      <li class="ticket-item">
-        <span class="label">Menores de 12 años</span>
-        <span class="price">$78.500</span>
-      </li>
-      <li class="ticket-item">
-        <span class="label">Niños (sin silla)</span>
-        <span class="free">NO PAGAN</span>
-      </li>
-    </ul>
-  </div>
+    <div class="ticket-price-box">
+      <div class="ticket-title">Valor de la Tarjeta</div>
+      <ul class="ticket-list">
+        <li class="ticket-item"><span class="label">Adultos</span><span class="price">$157.000</span></li>
+        <li class="ticket-item"><span class="label">Menores de 12 años</span><span class="price">$78.500</span></li>
+        <li class="ticket-item"><span class="label">Niños (sin silla)</span><span class="free">NO PAGAN</span></li>
+      </ul>
+    </div>
 
-  <!-- Botón Google Maps -->
-  <a href="https://maps.app.goo.gl/n3C1s9eJcV7gqZJSA" target="_blank" rel="noopener noreferrer" class="btn-maps">📍 Cómo llegar al lugar</a>
-  <div class="btn-sub">Abre Google Maps</div>
+    <a href="https://maps.app.goo.gl/n3C1s9eJcV7gqZJSA" target="_blank" rel="noopener noreferrer" class="btn-maps">📍 Cómo llegar al lugar</a>
+    <div class="btn-sub">Abre Google Maps</div>
 
-  <!-- Código de Vestimenta -->
-  <div class="divider-container">
-    <div class="line"></div>
-    <span class="sub-title">DRESS CODE</span>
-    <div class="line"></div>
-  </div>
-  <div class="info-box">
-    <div class="info-box-title">👔 Elegante / Formal</div>
-    <p class="info-box-text">Te esperamos con tu mejor outfit formal para celebrar esta gran noche juntos.</p>
-  </div>
+    <div class="divider-container">
+      <div class="line"></div>
+      <span class="sub-title">DRESS CODE</span>
+      <div class="line"></div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-title">👔 Elegante / Formal</div>
+      <p class="info-box-text">Te esperamos con tu mejor outfit formal para celebrar esta gran noche juntos.</p>
+    </div>
 
-  <!-- Cronograma del Evento -->
-  <div class="divider-container">
-    <div class="line"></div>
-    <span class="sub-title">CRONOGRAMA</span>
-    <div class="line"></div>
-  </div>
-  <div class="info-box">
-    <div class="timeline">
-      <div class="timeline-item"><span class="timeline-time">20:00 hs</span><span class="timeline-desc">Recepción e ingreso de invitados</span></div>
-      <div class="timeline-item"><span class="timeline-time">21:00 hs</span><span class="timeline-desc">Ingreso de egresados y brindis</span></div>
-      <div class="timeline-item"><span class="timeline-time">22:00 hs</span><span class="timeline-desc">Cena de egreso</span></div>
-      <div class="timeline-item"><span class="timeline-time">00:00 hs</span><span class="timeline-desc">Apertura de pista y fiesta 🎉</span></div>
+    <div class="divider-container">
+      <div class="line"></div>
+      <span class="sub-title">CRONOGRAMA</span>
+      <div class="line"></div>
+    </div>
+    <div class="info-box">
+      <div class="timeline">
+        <div class="timeline-item-static"><span class="timeline-time-static">20:00 hs</span><span class="timeline-desc-static">Recepción e ingreso de invitados</span></div>
+        <div class="timeline-item-static"><span class="timeline-time-static">21:00 hs</span><span class="timeline-desc-static">Ingreso de egresados y brindis</span></div>
+        <div class="timeline-item-static"><span class="timeline-time-static">22:00 hs</span><span class="timeline-desc-static">Cena de egreso</span></div>
+        <div class="timeline-item-static"><span class="timeline-time-static">00:00 hs</span><span class="timeline-desc-static">Apertura de pista y fiesta 🎉</span></div>
+      </div>
+    </div>
+
+    <div class="divider-container">
+      <div class="line"></div>
+      <span class="sub-title">MENÚ ESPECIAL</span>
+      <div class="line"></div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-title">🥗 Restricciones Alimentarias</div>
+      <p class="info-box-text">Si requieres un menú especial (Celíaco, Vegetariano, Vegano u otra restricción), por favor tenlo en cuenta para el evento.</p>
     </div>
   </div>
 
-  <!-- Menú Especial y Restricciones -->
-  <div class="divider-container">
-    <div class="line"></div>
-    <span class="sub-title">MENÚ ESPECIAL</span>
-    <div class="line"></div>
-  </div>
-  <div class="info-box">
-    <div class="info-box-title">🥗 Restricciones Alimentarias</div>
-    <p class="info-box-text">Si requieres un menú especial (Celíaco, Vegetariano, Vegano u otra restricción), por favor tenlo en cuenta para el evento.</p>
-  </div>
-
-  <!-- Frase Final -->
   <div class="footer-quote">"El deber nos unió, la historia nos recordará."</div>
 
-  <!-- Firma del Creador -->
   <div class="credits">
     <span>© 2026 Diseñado por <span class="credits-author">Oliva</span></span>
     <a href="https://wa.me/5491164664816" target="_blank" rel="noopener noreferrer" class="credits-icon" title="WhatsApp">💬</a>
@@ -478,17 +422,101 @@
 </div>
 
 <script>
-  // Configuración del contador fijando zona horaria (-03:00 Argentina)
+  // FECHA REAL DEL EVENTO OFICIAL: 14 de Noviembre de 2026 a las 20:00 hs
   const targetDate = new Date("2026-11-14T20:00:00-03:00").getTime();
+  
+  let partyModeTriggered = false;
+  let modalShown = false;
 
   function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
-    if (distance < 0) {
-      const grid = document.querySelector('.countdown-grid');
-      if (grid) {
-        grid.innerHTML = "<h3 style='grid-column: 1 / -1; color: #e5c158; margin: 10px 0; font-family: Cinzel, serif;'>¡Llegó el gran día! 🎉</h3>";
+    const eventDateObj = new Date(targetDate);
+    const year = eventDateObj.getFullYear();
+    const month = String(eventDateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(eventDateObj.getDate()).padStart(2, '0');
+    const eventDateStr = `${year}-${month}-${day}`;
+
+    const nextDayObj = new Date(eventDateObj);
+    nextDayObj.setDate(eventDateObj.getDate() + 1);
+    const nextYear = nextDayObj.getFullYear();
+    const nextMonth = String(nextDayObj.getMonth() + 1).padStart(2, '0');
+    const nextDay = String(nextDayObj.getDate()).padStart(2, '0');
+    const nextDateStr = `${nextYear}-${nextMonth}-${nextDay}`;
+
+    const t2000 = new Date(`${eventDateStr}T20:00:00-03:00`).getTime();
+    const t2100 = new Date(`${eventDateStr}T21:00:00-03:00`).getTime();
+    const t2200 = new Date(`${eventDateStr}T22:00:00-03:00`).getTime();
+    const t0000 = new Date(`${nextDateStr}T00:00:00-03:00`).getTime();
+    const t0600 = new Date(`${nextDateStr}T06:00:00-03:00`).getTime();
+
+    const currentTime = new Date().getTime();
+
+    if (distance <= 0) {
+      const mainSection = document.getElementById("main-content-section");
+      
+      if (mainSection && !partyModeTriggered) {
+        mainSection.innerHTML = `
+          <div class="live-party-banner" id="banner-box">
+            <div class="live-party-title" id="banner-title">🥂 ¡LA FIESTA ESTÁ EN MARCHA AHORA MISMO! ✨</div>
+            <div class="live-party-subtitle" id="banner-subtitle">
+              <span class="live-dot" id="banner-dot"></span> Evento en Transcurso <span class="live-dot" id="banner-dot2"></span>
+            </div>
+          </div>
+
+          <div class="divider-container" style="margin-top: 20px;">
+            <div class="line"></div>
+            <span class="sub-title">CRONOGRAMA EN VIVO</span>
+            <div class="line"></div>
+          </div>
+
+          <div class="timeline-box">
+            <div class="timeline-live">
+              <div class="timeline-item-live" id="item-20"><div class="timeline-content"><div class="timeline-header-row"><span class="timeline-time-live">20:00 HS</span><span class="status-badge" id="badge-20">Esperando</span></div><span class="timeline-desc-live">Recepción e ingreso de invitados</span></div></div>
+              <div class="timeline-item-live" id="item-21"><div class="timeline-content"><div class="timeline-header-row"><span class="timeline-time-live">21:00 HS</span><span class="status-badge" id="badge-21">Esperando</span></div><span class="timeline-desc-live">Ingreso de egresados y brindis</span></div></div>
+              <div class="timeline-item-live" id="item-22"><div class="timeline-content"><div class="timeline-header-row"><span class="timeline-time-live">22:00 HS</span><span class="status-badge" id="badge-22">Esperando</span></div><span class="timeline-desc-live">Cena de egreso</span></div></div>
+              <div class="timeline-item-live" id="item-00"><div class="timeline-content"><div class="timeline-header-row"><span class="timeline-time-live">00:00 HS</span><span class="status-badge" id="badge-00">Esperando</span></div><span class="timeline-desc-live">Apertura de pista y fiesta 🎉</span></div></div>
+            </div>
+          </div>
+
+          <div class="event-location">Quinta Colegio de Abogados</div>
+          <a href="https://maps.app.goo.gl/n3C1s9eJcV7gqZJSA" target="_blank" rel="noopener noreferrer" class="btn-maps">📍 Cómo llegar al lugar</a>
+          <div class="btn-sub">Abre Google Maps</div>
+        `;
+
+        confetti({ particleCount: 120, spread: 90, origin: { y: 0.6 }, colors: ['#f3d57b', '#e5c158', '#34d399', '#ffffff', '#60a5fa'] });
+        partyModeTriggered = true;
+      }
+
+      updateTimelineItem("20", t2000, t2100, currentTime);
+      updateTimelineItem("21", t2100, t2200, currentTime);
+      updateTimelineItem("22", t2200, t0000, currentTime);
+      updateTimelineItem("00", t0000, t0600, currentTime);
+
+      if (currentTime >= t0600) {
+        const bannerTitle = document.getElementById("banner-title");
+        const bannerSubtitle = document.getElementById("banner-subtitle");
+        if (bannerTitle && bannerSubtitle) {
+          bannerTitle.innerText = "✨ NOCHE DE EGRESO CONCLUIDA ✨";
+          bannerSubtitle.innerText = "Promoción 224";
+        }
+
+        const modalContainer = document.getElementById("modal-closing-container");
+        if (modalContainer && !modalShown && !sessionStorage.getItem("modalClosed")) {
+          modalShown = true;
+          modalContainer.innerHTML = `
+            <div class="modal-overlay">
+              <div class="modal-content-box">
+                <div class="modal-title">✨ ¡GRACIAS POR HACER HISTORIA! ✨</div>
+                <p class="modal-text">
+                  "Las luces se apagan, pero los recuerdos quedan para siempre. Gracias por compartir esta noche inolvidable con la Promoción 224. ¡Hasta nuestro próximo gran encuentro!"
+                </p>
+                <button class="modal-close-btn" onclick="closeModal()">Cerrar</button>
+              </div>
+            </div>
+          `;
+        }
       }
       return;
     }
@@ -507,6 +535,30 @@
     if (hElem) hElem.innerText = String(hours).padStart(2, '0');
     if (mElem) mElem.innerText = String(minutes).padStart(2, '0');
     if (sElem) sElem.innerText = String(seconds).padStart(2, '0');
+  }
+
+  function closeModal() {
+    const modalContainer = document.getElementById("modal-closing-container");
+    if (modalContainer) modalContainer.innerHTML = "";
+    sessionStorage.setItem("modalClosed", "true");
+  }
+
+  function updateTimelineItem(id, startTime, endTime, now) {
+    const itemElem = document.getElementById(`item-${id}`);
+    const badgeElem = document.getElementById(`badge-${id}`);
+    if (!itemElem || !badgeElem) return;
+    itemElem.classList.remove("active-event");
+    if (now < startTime) {
+      badgeElem.className = "status-badge status-pending";
+      badgeElem.innerText = "Próximamente ⌛";
+    } else if (now >= startTime && now < endTime) {
+      itemElem.classList.add("active-event");
+      badgeElem.className = "status-badge status-active";
+      badgeElem.innerText = "En curso 🟢";
+    } else {
+      badgeElem.className = "status-badge status-finished";
+      badgeElem.innerText = "Finalizado ✓";
+    }
   }
 
   setInterval(updateCountdown, 1000);
